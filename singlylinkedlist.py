@@ -6,13 +6,12 @@ class Node:
     def __str__(self):
         return str(self.data)
 
-class SingleLinkedList:
+class SinglyLinkedList:
     def __init__(self):
         self.start = None
         self.end = None
         self.middle = None
-        self.length = 0
-
+        
     def insert_after(self, new_node, data):
         node = self.get_node(data)
         new_node.next = node.next
@@ -24,16 +23,14 @@ class SingleLinkedList:
         else:
             self.end.next = node
         self.end = node
-        self.length += 1
-    
+       
     def insert_at_start(self, node):
         if self.start == None:
             self.end = node
         else:
             node.next = self.start
         self.start = node
-        self.length += 1
-
+    
     def display(self):
         node = self.start
         while node != None:
@@ -47,6 +44,9 @@ class SingleLinkedList:
 
     def delete_from_end(self):
         node = self.start
+        if self.start == self.end:
+            self.start = self.end = None
+            return
         end_node = self.end
         while node != None:
             if node.next.next == None:           
@@ -72,13 +72,21 @@ class SingleLinkedList:
             if node.data == data:
                 return node
             node = node.next
+    
+    def length(self):
+        length = 0
+        current_node = self.start
+        while current_node != None:
+            length += 1
+            current_node = current_node.next
+        return length
 
-linked_list = SingleLinkedList()
+linked_list = SinglyLinkedList()
 
 linked_list.insert_at_end(Node(20))
-linked_list.insert_at_end(Node(30))
-linked_list.insert_after(Node(10), 20)
-
+linked_list.insert_at_end(Node(70))
+linked_list.insert_at_end(Node(240))
+linked_list.insert_at_end(Node(70))
 linked_list.display()
 
-
+print("Length: ", linked_list.length())
