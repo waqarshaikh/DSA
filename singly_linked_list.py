@@ -40,7 +40,6 @@ class SinglyLinkedList:
     def delete_from_start(self):
         start_node = self.start
         self.start = start_node.next
-        del start_node
 
     def delete_from_end(self):
         node = self.start
@@ -85,8 +84,8 @@ linked_list = SinglyLinkedList()
 
 linked_list.insert_at_end(Node(20))
 linked_list.insert_at_end(Node(70))
-linked_list.insert_at_end(Node(240))
-linked_list.insert_at_end(Node(70))
+linked_list.insert_after(Node(12), 20)
+linked_list.delete_from_start()
 linked_list.display()
 
 print("Length: ", linked_list.length())
